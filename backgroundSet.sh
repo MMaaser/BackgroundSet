@@ -57,17 +57,11 @@ echo $length > ~/Documents/bash/paper/length.txt
 
 else #if there are parameters
 exec > /dev/null 2>&1 #stop outputting to terminal
-        backgroundParam="/home/max/Pictures/wallpaper/"$1
-        potentialParam="/home/max/Pictures/potentialWallpaper/"$1
         dirParam="$(pwd)"/$1
         if [ $(cd / && cat $1 | wc -c) -gt 0 ]; then
         plasma-apply-wallpaperimage "$1"
         elif [ $(cd / && cat "$dirParam" | wc -c) -gt 0 ]; then
         plasma-apply-wallpaperimage "$dirParam"
-        elif [ $(cd / && cat "$backgroundParam" | wc -c) -gt 0 ]; then
-        plasma-apply-wallpaperimage "$backgroundParam"
-        elif [ $(cd / && cat "$potentialParam" | wc -c) -gt 0 ]; then
-        plasma-apply-wallpaperimage $potentialParam
         else
 exec > /dev/tty 2>/dev/tty #resume output
         echo "Not a real path"
